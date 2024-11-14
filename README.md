@@ -1,5 +1,5 @@
 Đây là ứng dụng mobile đầu tiên của tôi, được thực hiện vào ngày 23/10/2024
-Dưới đây là một mô tả chi tiết về dự án ứng dụng di động mà bạn đang phát triển:
+Dưới đây là một mô tả chi tiết về dự án ứng dụng di động mà tôi phát triển:
 
 ---
 
