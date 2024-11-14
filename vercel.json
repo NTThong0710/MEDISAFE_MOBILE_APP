@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "env": {
+      "MONGO_URI": "mongodb+srv://thongnguyen07102004:thong+0917374532@cluster0.bgqcb.mongodb.net/medisafe?retryWrites=true&w=majority&appName=Cluster0"
+    }
+  }
+  
