@@ -6,6 +6,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false); // Thêm trạng thái loading
+  const [errorMessage, setErrorMessage] = useState(''); // Thêm trạng thái lỗi
   const authContext = useContext(AuthContext);
 
   const validateEmail = (email: string) => {
@@ -25,15 +26,19 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
     }
 
     setLoading(true); // Bắt đầu loading
+    setErrorMessage(''); // Reset thông báo lỗi trước khi kiểm tra lại
+
     try {
       // Gọi hàm login từ context
       const loginSuccess = await authContext?.login(email, password);
-      
+
       console.log("loginSuccess: ", loginSuccess);  // Debug thông tin đăng nhập
       console.log("Token from authContext: ", authContext?.state.token);
 
       if (authContext?.state.token) {
         navigation.replace('Home');
+      } else {
+        setErrorMessage('Mật khẩu không chính xác. Vui lòng thử lại.');
       }
     } catch (error) {
       console.error("Error during login: ", error); // Debug lỗi
@@ -68,6 +73,10 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
           secureTextEntry
         />
         
+        {errorMessage ? (
+          <Text style={styles.errorText}>{errorMessage}</Text> // Hiển thị thông báo lỗi
+        ) : null}
+        
         <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
           {loading ? (
             <ActivityIndicator size="small" color="#fff" />
@@ -85,7 +94,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2024 Công ty THONGDAN</Text>
+        <Text style={styles.footerText}>© 2024 Công ty TNHH THONGDAN</Text>
       </View>
     </KeyboardAvoidingView>
   );
@@ -160,6 +169,12 @@ const styles = StyleSheet.create({
   footerText: {
     color: '#fff',
     fontSize: 14,
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
 

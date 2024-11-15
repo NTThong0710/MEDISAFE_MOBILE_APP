@@ -38,13 +38,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       Alert.alert('Thông báo', 'Bạn phải nhập đầy đủ email và mật khẩu.');
       return;
     }
-
     try {
       const response = await axios.post('http://192.168.0.112:5000/login', { email, password });
 
       // Kiểm tra xem token có được trả về từ API không
       if (response.data.token) {
-        // Lưu token vào localStorage hoặc AsyncStorage nếu cần
+        // Lưu token vào context
         dispatch({ type: 'LOGIN', payload: { token: response.data.token } });
       } else {
         Alert.alert('Thông báo', 'Thông tin đăng nhập không chính xác.');
@@ -56,11 +55,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const register = async (email: string, password: string) => {
+    // Kiểm tra nếu email hoặc mật khẩu bị thiếu
     if (!email || !password) {
       Alert.alert('Thông báo', 'Vui lòng nhập đầy đủ thông tin.');
       return;
     }
-
     try {
       await axios.post('http://192.168.0.112:5000/register', { email, password });
       Alert.alert('Thông báo', 'Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.');

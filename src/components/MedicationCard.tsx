@@ -43,19 +43,19 @@ const MedicationCard: React.FC<MedicationCardProps> = ({
 
       <View style={styles.row}>
         <MaterialIcons name="local-pharmacy" size={20} color="white" />
-        <Text style={styles.label}>Generic Name:</Text>
+        <Text style={styles.label}>Tên chung:</Text>
         <Text style={styles.info}>{genericName || 'N/A'}</Text>
       </View>
 
       <View style={styles.row}>
         <MaterialIcons name="assignment" size={20} color="white" />
-        <Text style={styles.label}>Purpose:</Text>
+        <Text style={styles.label}>Mục đích sử dụng:</Text>
         <Text style={styles.info}>{formatList(purpose)}</Text>
       </View>
 
       <TouchableOpacity style={styles.toggleRow} onPress={() => toggleSection('instructions')}>
         <MaterialIcons name="description" size={20} color="white" />
-        <Text style={styles.label}>Instructions:</Text>
+        <Text style={styles.label}>Hướng dẫn sử dụng:</Text>
         <MaterialIcons name={expandedSections.instructions ? "expand-less" : "expand-more"} size={20} color="white" />
       </TouchableOpacity>
       {expandedSections.instructions && (
@@ -66,7 +66,7 @@ const MedicationCard: React.FC<MedicationCardProps> = ({
 
       <TouchableOpacity style={styles.toggleRow} onPress={() => toggleSection('sideEffects')}>
         <MaterialIcons name="warning" size={20} color="#d9534f" />
-        <Text style={[styles.label, styles.warningLabel]}>Side Effects:</Text>
+        <Text style={[styles.label, styles.warningLabel]}>Tác dụng phụ:</Text>
         <MaterialIcons name={expandedSections.sideEffects ? "expand-less" : "expand-more"} size={20} color="white" />
       </TouchableOpacity>
       {expandedSections.sideEffects && (
@@ -77,7 +77,7 @@ const MedicationCard: React.FC<MedicationCardProps> = ({
 
       <TouchableOpacity style={styles.toggleRow} onPress={() => toggleSection('contraindications')}>
         <MaterialIcons name="block" size={20} color="#d9534f" />
-        <Text style={[styles.label, styles.dangerLabel]}>Contraindications:</Text>
+        <Text style={[styles.label, styles.dangerLabel]}>Chống chỉ định:</Text>
         <MaterialIcons name={expandedSections.contraindications ? "expand-less" : "expand-more"} size={20} color="white" />
       </TouchableOpacity>
       {expandedSections.contraindications && (
