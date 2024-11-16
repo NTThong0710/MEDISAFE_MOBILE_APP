@@ -37,9 +37,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
 
       if (authContext?.state.token) {
         navigation.replace('Home');
-      } else {
-        setErrorMessage('Mật khẩu không chính xác. Vui lòng thử lại.');
-      }
+      } 
     } catch (error) {
       console.error("Error during login: ", error); // Debug lỗi
       Alert.alert('Thông báo', 'Đăng nhập không thành công. Vui lòng thử lại.');
